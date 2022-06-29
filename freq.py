@@ -3,9 +3,9 @@
 import math
 
 # Pide input de archivo y cantida de decimales
-fileName = input("Nombre del archivo: ")
+# fileName = input("Nombre del archivo: ")
 fileName = "data01.txt"
-d = int(input("Numero de decimales a truncar: "))
+d = 4 #int(input("Numero de decimales a truncar: "))
 N = 0
 array = []
 
@@ -46,10 +46,16 @@ for i in range(N):
             freqTable[j - 1] += 1
         
 # Prints 
-print("N: ", N)
-print("Max: ", maxNum)
-print("Min: ", minNum)
-print ("C: ", C)
-print ("W: ", W)
-print(rangeTable)
-print(freqTable)
+print("N: {}".format(N))
+print("C: {}".format(C))
+print("Max: {} Min: {}".format(maxNum, minNum))
+print("W: {}".format(W))
+print(len(freqTable))
+print(len(rangeTable))
+
+for i in range(0, C):
+    print("[{}, {}) {}".format(rangeTable[i], rangeTable[i + 1], freqTable[i]))
+
+print("Sum of frequencies: {}".format(sum(freqTable)))
+
+
