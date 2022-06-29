@@ -3,9 +3,8 @@
 import math
 
 # Pide input de archivo y cantida de decimales
-# fileName = input("Nombre del archivo: ")
-fileName = "data01.txt"
-d = 4 #int(input("Numero de decimales a truncar: "))
+fileName = input("Nombre del archivo: ")
+d = int(input("Numero de decimales a truncar: "))
 N = 0
 array = []
 
