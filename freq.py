@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import math
+import matplotlib.pyplot as plt
 
 # Pide input de archivo y cantida de decimales
 fileName = input("Nombre del archivo: ")
@@ -52,9 +53,18 @@ print("W: {}".format(W))
 print(len(freqTable))
 print(len(rangeTable))
 
+ranges = []
 for i in range(0, C):
+    ranges.append("[{}, {})".format(rangeTable[i], rangeTable[i + 1]))
     print("[{}, {}) {}".format(rangeTable[i], rangeTable[i + 1], freqTable[i]))
 
 print("Sum of frequencies: {}".format(sum(freqTable)))
 
+# Plotting 
+plt.rc('xtick', labelsize=7)    
+plt.rc('ytick', labelsize=9)    
+plt.title("Frequencies of Grouped Data")
+
+plt.bar(ranges,freqTable)
+plt.show()
 
