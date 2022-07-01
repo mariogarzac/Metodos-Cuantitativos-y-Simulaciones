@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+# Mario Garza Chapa
+# Juan Pablo González
+# Michel AntoineDionne 
+
 import math
 import matplotlib.pyplot as plt
 
@@ -29,10 +33,12 @@ rangeTable = [0 for _ in range(C + 1)]
 freqTable = [0 for _ in range(C)]
 
 # Calcula los rangos del histograma
+rangeTable[0] = minNum
+
 for i in range(1, C):
     rangeTable[i] = round(rangeTable[i - 1] + W, d)
 
-rangeTable[0] = minNum
+
 rangeTable[C] = maxNum + (1/10 ** d)
 
 # Se cuenta la frecuencia de los elementos en los rangos 
