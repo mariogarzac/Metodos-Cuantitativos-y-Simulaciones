@@ -29,8 +29,8 @@ def runsTest():
             rachasCounter += 1
 
     #Calculamos los valores para rechazar o no rechazar la hipotesis
-    uR = round((((len(runsValues)-1) * 2) - 1)/3,5)
-    oR = round((((len(runsValues)-1) * 16) - 29)/90,5)
+    uR = round(((len(signHolder) * 2) - 1)/3,5)
+    oR = round(((len(signHolder) * 16) - 29)/90,5)
     o = round(math.sqrt(oR),5)
     zR = round((rachasCounter-uR) / o,5)
 
