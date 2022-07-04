@@ -6,9 +6,11 @@
 
 import chi 
 import rachas
+import LCG
 
 def main():
 
+    LCG.runTests()
     chi.chiSquaredTest()
     rachas.runsTest()
 
