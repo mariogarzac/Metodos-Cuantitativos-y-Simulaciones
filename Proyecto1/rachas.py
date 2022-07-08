@@ -35,13 +35,35 @@ def runsTest():
     zR = round((rachasCounter-uR) / o,5)
 
     #Revisamos si se rechaza o no se rechaza la hipotesis al igual que imprimimos todos los datos
-    print("\nTenemos los signos generados: ",signHolder)
-    print("Con una cantidad de rachas calculadas de: {}".format(rachasCounter))
-    print("El parametro de Miu dio: {}".format(uR))
-    print("El parametro de Sigma dio: {}".format(o))
-    print("El parametro de Zscore dio: {}".format(zR))
-    print("H0: la aparición de los números es aleatoria")
+    # print("\nTenemos los signos generados: ",signHolder)
+    # print("Con una cantidad de rachas calculadas de: {}".format(rachasCounter))
+    # print("El parametro de Miu dio: {}".format(uR))
+    # print("El parametro de Sigma dio: {}".format(o))
+    # print("El parametro de Zscore dio: {}".format(zR))
+    # print("H0: la aparición de los números es aleatoria")
+    # if abs(zR) > 1.96:
+    #     print("Se rechaza la Ho porque el valor de |{}| es mayor a 1.96".format(zR))
+    # else:
+    #     print("No se rechaza la Ho porque el valor de |{}| es menor a 1.96".format(zR))
+
+    print("Genrated signs: ")
+    for i in range(len(signHolder)):
+        print("{} ".format(signHolder[i]), end = '')
+    print("\n")
+    print("Total: ", len(signHolder))
+    print("Total runs: ", rachasCounter)
+    print("Statistics\n")
+    print("Miu = ", uR)
+    print("Sigma = ", o)
+    print("Zscore = ", zR)
+
+    print("H0: Apperance of the numbers is random.")
+    print("H1: Apperance of the numbers is not random.\n")
+
     if abs(zR) > 1.96:
-        print("Se rechaza la Ho porque el valor de |{}| es mayor a 1.96".format(zR))
+        print("Since |{}| > 1.96, H0 is  rejected.".format(zR))
     else:
-        print("No se rechaza la Ho porque el valor de |{}| es menor a 1.96".format(zR))
+        print("Since |{}| < 1.96, H0 is not rejected".format(zR))
+
+
+
