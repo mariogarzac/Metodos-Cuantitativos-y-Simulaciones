@@ -50,13 +50,13 @@ def chiSquaredTest():
 
     # Creates observed table
     j = 1
-    for i in range(N):
+    i = 0
+    while (i < N):
         if (data[i] < ranges[j]):
             observed[j - 1] += 1
+            i += 1
         else:
-            j += 1
-            if (j <= numbersGenerated):
-                observed[j - 1] += 1
+            j+= 1
 
     # Fills expected array
     for i in range(10):
