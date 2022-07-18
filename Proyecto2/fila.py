@@ -4,7 +4,7 @@ def fila(N,tLlegarMax, tCajeroMax):
     hora, minutos = 9,0
     tiemposTramite = [random.randint(1,tCajeroMax) for i in range(N)]
     tiempoLlegadas = [random.randint(1,tLlegarMax) for i in range(N)]
-    previo, llegada, inicio, espera, inactividad = 0, 0, 0, 0, 0
+    previo, llegada, inicio, espera, inactividad, esperando = 0, 0, 0, 0, 0, 0
 
     #Añadir el primer visitante manualmente
     print("cliente | tiempo entre llegadas | Hora de llegada | tiempo del tramite | inicio de servicio | Termina servicio")
@@ -28,11 +28,12 @@ def fila(N,tLlegarMax, tCajeroMax):
         llegada += tiempoLlegadas[counter]
         if previo >= llegada:
             inicio = previo
+            esperando += 1
         else:
             inicio = llegada
             inactividad += (llegada - previo)
     
-        # El tiempo de espera de los clientes, revisar lógica después
+        # El tiempo de espera de los clientes
         if inicio > llegada:
             espera += (inicio - llegada)
 
@@ -50,6 +51,7 @@ def fila(N,tLlegarMax, tCajeroMax):
         counter+=1
     print('\nLa espera total fue de: ',espera)
     print('La inactividad total fue de: ',inactividad)
+    print('El total de clientes esperando fue de: ',esperando)
 
 
 def main():
