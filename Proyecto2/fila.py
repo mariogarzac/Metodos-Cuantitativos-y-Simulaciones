@@ -1,17 +1,25 @@
 import random
+from sqlite3 import Timestamp
+
+
+def setTime(minutos : int):
+    if (minutos < 10):
+        return "0" + str(minutos)
+    else:
+        return str(minutos)
 
 def fila(N,tLlegarMax, tCajeroMax):
     hora, minutos = 9,0
-    tiemposTramite = [random.randint(1,tCajeroMax) for i in range(N)]
-    tiempoLlegadas = [random.randint(1,tLlegarMax) for i in range(N)]
+    tiemposTramite = [random.randint(1,tCajeroMax) for _ in range(N)]
+    tiempoLlegadas = [random.randint(1,tLlegarMax) for _ in range(N)]
     previo, llegada, inicio, espera, inactividad, esperando = 0, 0, 0, 0, 0, 0
 
     #Añadir el primer visitante manualmente
-    print("cliente | tiempo entre llegadas | Hora de llegada | tiempo del tramite | inicio de servicio | Termina servicio")
+    print("cliente | tiempo entre llegadas |   Hora de llegada  |  Tiempo del tramite  |    Inicio de Servicio    | Termina servicio")
     llegaPrimero = random.randint(1,tCajeroMax)
     counter = 1
-    print("{}   |   {}  |   {}:{}   |   {}  |   {}:{}   |   {}:{}"
-        .format(counter,0,  hora, minutos,   llegaPrimero,  hora, minutos,  hora, minutos+llegaPrimero))
+    print("{:5.0f}   |   {:15.0f}     |   {:11.0f}:{}   |   {:17.0f}  |   {:17.0f}:{}   |   {:8.0f}:{}"
+        .format(counter,0,  hora, setTime(minutos),   llegaPrimero,  hora, setTime(minutos),  hora, setTime(minutos + llegaPrimero)))
     minutos+=llegaPrimero
     previo = minutos
     inicio = minutos
@@ -38,21 +46,27 @@ def fila(N,tLlegarMax, tCajeroMax):
             espera += (inicio - llegada)
 
         #Imprimir el formato
-        print("{}     |{}     |{}:{}    |   {}  |   {}:{}   |   {}:{}".format(counter+1
+        print("{:5.0f}   |   {:15.0f}     |   {:11.0f}:{}   |   {:17.0f}  |   {:17.0f}:{}   |   {:8.0f}:{} ".format(counter+1
         ,tiempoLlegadas[counter],
-        hora, llegada,
+        hora, setTime(llegada),
         tiemposTramite[counter],
-        hora,inicio,
-        hora, inicio+tiemposTramite[counter]))
+        hora,setTime(inicio),
+        hora, setTime(inicio+tiemposTramite[counter])))
 
         #Suma a los iteradores
         inicio+=tiemposTramite[counter]
         previo = inicio
         counter+=1
+    
     print('\nLa espera total fue de: ',espera)
     print('La inactividad total fue de: ',inactividad)
     print('El total de clientes esperando fue de: ',esperando)
 
+    print('\n')
+    print("Tiempo esperado por cliente: ", espera/counter)
+    print("Probabilidad de tiempo de que un cliente espere en la fila: ", esperando/counter)
+    print("Porcentaje de tiempo que estuvo inactivo el ATM : ", (inactividad/sum(tiemposTramite) + inactividad))
+    print("Tiempo promedio de servicio: ", sum(tiemposTramite)/counter)
 
 def main():
     fila(4,5,5)
