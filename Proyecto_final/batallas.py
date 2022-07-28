@@ -1,5 +1,9 @@
 import random
 
+# Michel Antoinne
+# Juan Pablo González 
+# Mario Garza Chapa
+
 def writeMatrix(file, matrix):
     #Se escribe la primera linea
     txt = "\t"
