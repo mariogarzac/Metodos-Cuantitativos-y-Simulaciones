@@ -1,11 +1,14 @@
 import random
 
 def writeMatrix(file, matrix):
+    #Se escribe la primera linea
     txt = "\t"
     for i in range(0,len(matrix)):
         txt+=str(i+1)+"\t"
     txt+="\n"
     file.write(txt)
+
+    #Se escriben el resto de las lineas
     for i in range(0,len(matrix)):
         mat = str(i+1)
         for j in range(0,len(matrix)):
@@ -23,6 +26,7 @@ def countFaction(warriors):
 
 def writeWarriors(file, warriors):
     file.write("El numero de guerreros de cada faccion es:\n")
+    # Genera un arreglo con los guerreros de cada facción
     for i in range(0,len(warriors)):
         # if warriors[i] == 0:
         #     pass
@@ -36,7 +40,7 @@ def createMatrix(n):
     else:
         matrix = []
         for i in range(n):
-            group = [round(random.random(),2) for i in range(n)]
+            group = [round(random.random(),2) for _ in range(n)]
             for j in range(n):
                 if j == i:
                     group[j] = 0
@@ -69,20 +73,19 @@ def main():
     while countFaction(warriors) > 1:
         #Condición para ver si ya eliminaron a alguien
         warriors, factions, matrix = checkWarriors(warriors, factions, matrix, newFile)
-        if len(warriors) == 1:
+        if len(warriors) <= 1:
             break
         else:
             #Los ataques
             battle = random.sample(factions,2)
-            newFile.write("La faccion {} ataca a la faccion {}\n".format(battle[0],battle[1]))
+            newFile.write("*La faccion {} ataca a la faccion {}\n".format(battle[0],battle[1]))
+            
+            try:
+                warriors[int(battle[1])-1] -= 10
+                writeWarriors(newFile, warriors)
+            except IndexError:
+               pass
 
-            # if warriors[int(battle[1])-1] - 10 == 0:
-            #     warriors[int(battle[1])-1] -= 10
-            # else:
-            #     warriors[int(battle[1])-1] -= 10
-            #     writeWarriors(newFile, warriors)
-            warriors[int(battle[1])-1] -= 10
-            writeWarriors(newFile, warriors)
     
     warriors, factions, matrix = checkWarriors(warriors, factions, matrix, newFile)
     newFile.write("La faccion ganadora es la {}".format(factions[0]))
